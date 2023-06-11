@@ -6,7 +6,9 @@ use App\Models\Brand;
 use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Validator;
 
 class ProductController extends Controller
 {
@@ -14,7 +16,25 @@ class ProductController extends Controller
     {
         $products = Product::with('category')->get();
 
-        return view('product.index', ['products' => $products]);
+        if (Auth::user()->role->name == 'User') {
+            return view('product.card', ['products' => $products]);
+        } else {
+            return view('product.index', ['products' => $products]);
+        }
+    }
+
+    public function show($id)
+    {
+        $product = Product::where('id', $id)->with('category')->first();
+
+        $related = Product::where('category_id', $product->category->id)->inRandomOrder()->limit(4)->get();
+
+        if ($product) {
+            return view('product.show', compact('product', 'related'));
+        } else {
+            abort(404);
+        }
+
     }
 
     public function create()
@@ -27,6 +47,20 @@ class ProductController extends Controller
 
     public function store(Request $request)
     {
+
+        $validator = Validator::make($request->all(), [
+            'category' => 'required',
+            'name' => 'required|string|min:3',
+            'price' => 'required|integer',
+            'sale_price' => 'required|integer',
+            'brand' => 'required|string',
+            'image' => 'required|image|mimes:jpeg,png,jpg|max:2048',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator->errors())->withInput();
+        }
+
         // ubah nama file
         $imageName = time() . '.' . $request->image->extension();
 
@@ -44,20 +78,20 @@ class ProductController extends Controller
 
         return redirect()->route('product.index');
     }
-    
+
     public function edit($id)
     {
         // ambil data product berdasarkan id
         $product = Product::where('id', $id)->with('category')->first();
-        
+
         // ambil data brand dan category sebagai isian di pilihan (select)
         $brands = Brand::all();
         $categories = Category::all();
-        
+
         // tampilkan view edit dan passing data product
         return view('product.edit', compact('product', 'brands', 'categories'));
     }
-    
+
     public function update(Request $request, $id)
     {
         // cek jika user mengupload gambar di form
@@ -94,19 +128,19 @@ class ProductController extends Controller
                 'brands' => $request->brand,
             ]);
         }
-        
+
         // redirect ke halaman product.index
         return redirect()->route('product.index');
     }
-    
+
     public function destroy($id)
     {
         // ambil data product berdasarkan id
         $product = Product::find($id);
-        
+
         // hapus data product
         $product->delete();
-        
+
         // redirect ke halaman product.index
         return redirect()->route('product.index');
     }
