@@ -3,7 +3,7 @@
 @section('content')
     <main>
         <div class="container-fluid px-4">
-            <h1 class="my-4">Product</h1>
+            <h1 class="my-4">Data Product</h1>
 
             <a class="btn btn-primary mb-2" href="{{ route('product.create') }}" role="button">Create New</a>
 
@@ -15,6 +15,7 @@
                                 <th>#</th>
                                 <th>Category</th>
                                 <th>Nama</th>
+                                <th>Deskripsi</th>
                                 <th>Price</th>
                                 <th>Sale Price</th>
                                 <th>Image</th>
@@ -27,6 +28,7 @@
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $product->category->name }}</td>
                                     <td>{{ $product->name }}</td>
+                                    <td>{{ $product->description }}</td>
                                     <td>Rp. {{ number_format($product->price, 0, 2) }}</td>
                                     <td>Rp. {{ number_format($product->sale_price, 0, 2) }}</td>
                                     <td>

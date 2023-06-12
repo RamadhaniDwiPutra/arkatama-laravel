@@ -24,7 +24,7 @@
 
                         <div class="mb-3">
                             <label for="image" class="form-label">Slider Image <small>(optional)</small> </label>
-                            <input class="form-control" type="file" name="image" id="image" accept=".jpg, .jpeg, .png., .webp">
+                            <input class="form-control" type="file" name="image" id="image" accept=".jpg, .jpeg, .png, .webp">
                         </div>
                         
                         <button type="submit" class="btn btn-primary">Submit</button>

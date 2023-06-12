@@ -41,8 +41,7 @@
                             Rp.{{ number_format($product->price, 0) }}
                     @endif
                     </div>
-                    <p class="lead">Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium at dolorem quidem modi. Nam sequi consequatur obcaecati excepturi alias magni, accusamus eius
-                        blanditiis delectus ipsam minima ea iste laborum vero?</p>
+                    <p class="lead">{{ $product->description }}</p>
                     <div class="d-flex">
                         <a class="btn btn-outline-dark mt-auto" href="https://wa.me/6285946069154" target="_blank"><i class="bi bi-whatsapp"> </i>Pesan Sekarang</a>
                     </div>
