@@ -59,14 +59,14 @@
                             </div>
 
                             <div class="form-floating mb-3">
-                                 <input type="email" class="form-control" id="floatingInput" name="email">
+                                <input type="email" class="form-control" id="floatingInput" name="email">
                                 <label for="floatingInput">Email address</label>
                             </div>
                             <div class="form-floating mb-3">
                                 <input type="password" class="form-control" id="floatingPassword" name="password">
                                 <label for="floatingPassword">Password</label>
                             </div>
-                    
+
                             <div class="d-grid">
                                 <button class="btn btn-primary btn-login text-uppercase fw-bold" type="submit">Sign Up</button>
                             </div>

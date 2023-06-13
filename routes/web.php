@@ -34,7 +34,6 @@ Route::get('/landing', [LandingController::class, 'index'])->name('landing');
 Route::get('/register', [RegisterController::class, 'index'])->name('register');
 Route::post('/register', [RegisterController::class, 'store'])->name('register.store');
 
-// Login
 Route::get('/login', [LoginController::class, 'index'])->name('login');
 Route::post('/login', [LoginController::class, 'authenticate'])->name('login.authenticate');
 
@@ -43,22 +42,22 @@ Route::get('/product/show/{id}', [ProductController::class, 'show'])->name('prod
 Route::middleware('auth')->group(function() {
     Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
+
     // Dashboard
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
-
-    // ADMIN
-    Route::middleware('role:Admin')->group(function() {
+    
+    // STAFF & ADMIN
+    Route::middleware('role:Admin|Staff')->group(function() {
         // Slider
         Route::get('/slider', [SliderController::class, 'index'])->name('slider.index'); // route untuk menampilkan data awal
         Route::get('/slider/create', [SliderController::class, 'create'])->name('slider.create'); // route untuk menampilkan form create
         Route::post('/slider', [SliderController::class, 'store'])->name('slider.store'); // route untuk menyimpan data
         Route::get('/slider/edit/{id}', [SliderController::class, 'edit'])->name('slider.edit'); // route untuk menampilkan form edit
         Route::put('/slider/{id}', [SliderController::class, 'update'])->name('slider.update'); // route untuk mengupdate data
+        Route::put('/slider/approve/{id}', [SliderController::class, 'approve'])->name('slider.approve'); // route untuk mengupdate data
+        Route::put('/slider/reject/{id}', [SliderController::class, 'reject'])->name('slider.reject'); // route untuk mengupdate data
         Route::delete('/slider/{id}', [SliderController::class, 'destroy'])->name('slider.destroy'); // route untuk menghapus data
-    });
-
-    // STAFF & ADMIN
-    Route::middleware('role:Admin|Staff')->group(function() {
+        
         // Brand
         Route::get('/brand', [BrandController::class, 'index'])->name('brand.index'); // route untuk menampilkan data awal
         Route::get('/brand/create', [BrandController::class, 'create'])->name('brand.create'); // route untuk menampilkan form create
@@ -66,11 +65,7 @@ Route::middleware('auth')->group(function() {
         Route::post('/brand', [BrandController::class, 'store'])->name('brand.store'); // route untuk menyimpan data
         Route::put('/brand/{id}', [BrandController::class, 'update'])->name('brand.update'); // route untuk mengupdate data
         Route::delete('/brand/{id}', [BrandController::class, 'destroy'])->name('brand.destroy'); // route untuk menghapus data
-    });
-    
-
-    // STAFF & ADMIN
-    Route::middleware('role:Admin|Staff')->group(function() {
+        
         // Category
         Route::get('/category', [CategoryController::class, 'index'])->name('category.index');
         Route::get('/category/create', [CategoryController::class, 'create'])->name('category.create');
@@ -84,17 +79,19 @@ Route::middleware('auth')->group(function() {
     // Product
     Route::get('/product', [ProductController::class, 'index'])->name('product.index');
 
-    Route::middleware('role:Admin')->group(function() {
+    Route::middleware('role:Admin|Staff')->group(function() {
         Route::get('/product/create', [ProductController::class, 'create'])->name('product.create');
         Route::post('/product', [ProductController::class, 'store'])->name('product.store');
         Route::get('/product/edit/{id}', [ProductController::class, 'edit'])->name('product.edit');
         Route::put('/product/{id}', [ProductController::class, 'update'])->name('product.update');
+        Route::put('/product/approve/{id}', [ProductController::class, 'approve'])->name('product.approve');
+        Route::put('/product/reject/{id}', [ProductController::class, 'reject'])->name('product.reject');
         Route::delete('/product/{id}', [ProductController::class, 'destroy'])->name('product.destroy');
     });
 
     // ADMIN
     Route::middleware('role:Admin')->group(function() {
-         // User
+        // User
         Route::get('/user', [UserController::class, 'index'])->name('user.index');
         Route::get('/user/create', [UserController::class, 'create'])->name('user.create');
         Route::post('/user', [UserController::class, 'store'])->name('user.store');
@@ -111,5 +108,4 @@ Route::middleware('auth')->group(function() {
         Route::delete('/role/{id}', [RoleController::class, 'destroy'])->name('role.destroy');
     });
     
-
 });

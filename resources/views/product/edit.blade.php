@@ -23,10 +23,10 @@
                         <div class="mb-3">
                             <label for="name" class="form-label">Name</label>
                             <input type="text" class="form-control" id="name" value="{{ $product->name }}" name="name" required>
-                        </div>
+                        </div>                
                         <div class="mb-3">
                             <label for="description" class="form-label">Deskripsi</label>
-                            <textarea class="form-control" id="description" name="description" rows="5"></textarea>
+                                <textarea class="form-control" id="description" name="description" rows="5"></textarea>
                         </div>
                         <div class="mb-3">
                             <label for="price" class="form-label">Price</label>

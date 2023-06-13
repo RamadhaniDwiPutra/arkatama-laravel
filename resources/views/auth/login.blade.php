@@ -35,25 +35,25 @@
     <div class="container">
         <div class="row">
             <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
-                
-            @if (Session::get('success'))
-            <div class="alert alert-success alert-dismissible fade show mt-3" role="alert">
-                <strong>Sukses!</strong> Akun anda behasil dibuat.
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
-            @endif
 
-            @if (Session::get('error'))
-            <div class="alert alert-danger alert-dismissible fade show mt-3" role="alert">
-                <strong>Oops!</strong> Email atau password salah.
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
-            @endif
+                @if (Session::get('success'))
+                    <div class="alert alert-success alert-dismissible fade show mt-3" role="alert">
+                        <strong>Sukses!</strong> Akun anda berhasil dibuat.
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                @endif
 
-                <div class="card border-0 shadow rounded-3 my-5">
+                @if (Session::get('error'))
+                    <div class="alert alert-danger alert-dismissible fade show mt-3" role="alert">
+                        <strong>Oops!</strong> Email atau password salah.
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                @endif
+
+                <div class="card border-0 shadow rounded-3 mb-5 mt-2">
                     <div class="card-body p-4 p-sm-5">
                         <h5 class="card-title text-center mb-5 fw-light fs-5">Sign In</h5>
-                        <form action="{{ route('login.authenticate') }}" method="POST">    
+                        <form action="{{ route('login.authenticate') }}" method="POST">
                             @csrf
 
                             <div class="form-floating mb-3">
@@ -75,7 +75,7 @@
                                 <button class="btn btn-primary btn-login text-uppercase fw-bold" type="submit">Sign In</button>
 
                                 <br>
-                                <a href="{{ route('register') }}">Register Now</a>
+                                <a href="{{ route('register') }}" class="text-primary">Belum Punya Akun? Register Sekarang</a>
                             </div>
                         </form>
                     </div>
