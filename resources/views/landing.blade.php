@@ -128,10 +128,10 @@
                     <h1>Filter Harga</h1>
                     <div class="row g-3 my-4 filter-container">
                         <div class="col-sm-3 d-flex justify-content-center">
-                            <input type="text" class="form-control" placeholder="Min" name="min" value="{{ old('min') }}">
+                            <input type="text" class="form-control" placeholder=" Harga Min" name="min" value="{{ old('min') }}">
                         </div>
                         <div class="col-sm-3 d-flex justify-content-center">
-                            <input type="text" class="form-control" placeholder="Max" name="max" value={{ old('max') }}>
+                            <input type="text" class="form-control" placeholder="Harga Max" name="max" value={{ old('max') }}>
                         </div>
                         <div class="col-sm-3">
                             <button type="submit" class="btn btn-primary">Terapkan</button>
@@ -181,7 +181,7 @@
                             </div>
                             <!-- Product actions-->
                             <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="https://wa.me/6285946069154" target="_blank"><i class="bi bi-whatsapp"> </i>Pesan Sekarang</a></div>
+                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="{{ route('login') }}"><i class="bi bi-whatsapp"> </i>Pesan Sekarang</a></div>
                             </div>
                         </div>
                     </div>

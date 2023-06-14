@@ -48,7 +48,7 @@
                     </div>
                     <p class="lead">{{ $product->description }}</p>
                     <div class="d-flex">
-                        <a class="btn btn-outline-dark mt-auto" href="https://wa.me/6285946069154" target="_blank"><i class="bi bi-whatsapp"> </i>Pesan Sekarang</a>
+                        <a class="btn btn-outline-dark mt-auto" href="{{ route('login') }}"><i class="bi bi-whatsapp"> </i>Pesan Sekarang</a>
                     </div>
                 </div>
             </div>

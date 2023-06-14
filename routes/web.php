@@ -28,7 +28,7 @@ Route::get('/', function () {
 });
 
 // Landing
-Route::get('/landing', [LandingController::class, 'index'])->name('landing');
+Route::get('/', [LandingController::class, 'index'])->name('landing');
 
 //Register
 Route::get('/register', [RegisterController::class, 'index'])->name('register');
